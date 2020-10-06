@@ -1,23 +1,81 @@
 package at.ac.fhcampuswien;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class App {
 
     //todo Task 1
     public void largestNumber(){
-        // input your solution here
+
+        Scanner scanner = new Scanner(System.in);
+        float number;
+        float bigNumber = 0;
+        int count = 1;
+
+        do{
+            number = scanner.nextFloat();
+
+            if(number > bigNumber){
+                bigNumber = number;
+            }
+
+            System.out.print("Number " + count + ": ");
+            count++;
+        }
+        while(number > 0);
+
+        if(bigNumber <= 0){
+            System.out.println("No number entered.");
+        }
+        else {
+            String output = String.format("The largest number is " + "%.2f", bigNumber);
+            System.out.println(output);
+        }
     }
 
     //todo Task 2
     public void stairs(){
-        // input your solution here
+
+        Scanner scanner = new Scanner(System.in);
+        int column;
+        int row = 1;
+        int number = 1;
+
+        column = scanner.nextInt();
+        System.out.print("n: ");
+
+        if (column <= 0){
+            System.out.println("Invalid number!");
+        }
+        else {
+            for (int i = 0; column > i; i++) {
+                for (int j = 0; row > j; j++) {
+                    System.out.print(number + " ");
+                    number++;
+                }
+                System.out.println("");
+                row++;
+            }
+        }
     }
 
     //todo Task 3
     public void printPyramid(){
-        // input your solution here
+
+        int row = 6;
+        int starCount = 1;
+
+        for (int i = 0; row > i; i++){
+
+            for (int j = 0; (row - i - 1) > j; j++){
+                System.out.print(" ");
+            }
+            for (int k = 0; (starCount) > k; k++){
+                System.out.print("*");
+            }
+            starCount += 2;
+            System.out.println();
+        }
     }
 
     //todo Task 4
