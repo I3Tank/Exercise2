@@ -53,7 +53,7 @@ public class App {
                     System.out.print(number + " ");
                     number++;
                 }
-                System.out.println("");
+                System.out.println();
                 row++;
             }
         }
@@ -80,17 +80,151 @@ public class App {
 
     //todo Task 4
     public void printRhombus(){
-        // input your solution here
+        Scanner scanner = new Scanner(System.in);
+
+        char c;
+        int h;
+        int spaceToPrint;
+        int halfHeight;
+        int asciiToPrint = 1;
+        int asciiNr = 0;
+        boolean middleReached = false;
+
+        System.out.print("h: ");
+        h = scanner.nextInt();
+        System.out.print("c: ");
+        c = scanner.next().charAt(0);
+
+        halfHeight = (h - 1) / 2;
+        spaceToPrint = halfHeight;
+
+        if(h % 2 != 0){
+            for (int i = 0; i <= halfHeight; i++){
+
+                for (int j = 0; j < spaceToPrint; j++){
+                    System.out.print(" ");
+                }
+                for (int k = 0; k < asciiToPrint; k++){
+                    System.out.print((char) (c - asciiNr));
+                    if ((c - asciiNr) == c) {
+                        middleReached = true;
+                    }
+                    if(middleReached){
+                        asciiNr += 1;
+                    }
+                    else{
+                        asciiNr -= 1;
+                    }
+                }
+                asciiToPrint += 2;
+                spaceToPrint -= 1;
+                asciiNr = (asciiToPrint - 1) / 2;
+                middleReached = false;
+                System.out.println();
+            }
+            asciiToPrint -= 4;
+            spaceToPrint += 2;
+            asciiNr = (asciiToPrint - 1) / 2;
+
+            for(int l = 0; l < halfHeight; l++){
+                for (int j = 0; j < spaceToPrint; j++){
+                    System.out.print(" ");
+                }
+                for (int k = 0; k < asciiToPrint; k++){
+                    System.out.print((char) (c - asciiNr));
+                    if ((c - asciiNr) == c) {
+                        middleReached = true;
+                    }
+                    if(middleReached){
+                        asciiNr += 1;
+                    }
+                    else{
+                        asciiNr -= 1;
+                    }
+                }
+                asciiToPrint -= 2;
+                spaceToPrint += 1;
+                asciiNr = (asciiToPrint - 1) / 2;
+                middleReached = false;
+                System.out.println();
+            }
+        }
+        else{
+            System.out.println("Invalid number!");
+        }
     }
 
     //todo Task 5
     public void marks(){
-        // input your solution here
+
+        Scanner scanner = new Scanner(System.in);
+        int grade;
+        int gradeSum = 0;
+        int count = 0;
+        int negativeGradeCount = 0;
+        float average;
+
+        do {
+            System.out.print("Mark " + (count + 1) + ": ");
+            grade = scanner.nextInt();
+
+            if (grade < 0 || grade > 5){
+                System.out.println("Invalid mark!");
+            }
+            if(grade == 5){
+                negativeGradeCount++;
+            }
+            if (grade > 0 && grade <= 5) {
+                gradeSum = gradeSum + grade;
+                count++;
+            }
+        }
+        while(grade != 0);
+
+        if (gradeSum == 0 || count == 0){
+            average = 0;
+        }
+        else{
+            average = (float) gradeSum / count;
+        }
+
+        String output = String.format("Average: " + "%.2f", average);
+        System.out.println(output);
+        System.out.println("Negative marks: " + negativeGradeCount);
     }
 
     //todo Task 6
     public void happyNumbers(){
-        // input your solution here
+
+        Scanner scanner = new Scanner(System.in);
+        int number;
+        int dezOne;
+        int dezTen;
+        int dezHundred;
+        int quadSum;
+        boolean happyOrSad = false;
+
+
+        System.out.print("n: ");
+        number = scanner.nextInt();
+
+
+        while(!happyOrSad) {
+            dezOne = number % 10;
+            dezTen = ((number % 100) - dezOne) /10;
+            dezHundred = ((number % 1000) - (dezOne + dezTen)) / 100;
+            quadSum = (dezOne * dezOne) + (dezTen * dezTen) + (dezHundred * dezHundred);
+            number = quadSum;
+            if (number == 1 || number == 4){
+              happyOrSad = true;
+            }
+        }
+        if (number == 1){
+            System.out.println("Happy number!");
+        }
+        else{
+           System.out.println("Sad number!");
+       }
     }
 
     public static void main(String[] args){
